@@ -72,7 +72,7 @@ kubectl get jobs -n $namespace -o custom-columns=':metadata.name,:status.conditi
 
 if [ -s lists/tmpfld$UNIQUE ]
 then
-    bash cleanup_list.sh -n $namespace -i lists/tmpfld$UNIQUE -o $failed &
+    bash cleanup_list.sh -n $namespace -i lists/tmpfld$UNIQUE -o $failed -l manifests &
 fi
 
 rm lists/tmpexfailist$UNIQUE
