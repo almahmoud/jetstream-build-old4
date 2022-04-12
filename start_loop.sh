@@ -45,7 +45,7 @@ if [ -z "$logs" ];
 fi
 
 # Start dispatch loop
-bash -c "while true; do bash dispatch_ready.sh -n $namespace -c $claim -b $built -f $failed -l $logs && wait; done" &
+bash -c "while true; do bash dispatch_ready.sh -n $namespace -c $claim -b $built -f $failed -l $logs; done" &
 
 # Commit loop for github updates
 sleep 300 && bash commit.sh &
