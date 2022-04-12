@@ -52,7 +52,7 @@ sleep 300 && bash commit.sh &
 
 # Loop until no more jobs in the namespace for >20 seconds
 while (( $(kubectl get jobs -n $namespace | grep 'build' | wc -l && sleep 10) + $(kubectl get jobs -n $namespace | grep 'build' | wc -l && sleep 10) + $(kubectl get jobs -n $namespace | grep 'build' | wc -l) > 0 )); do
-    echo "$(date) pods running: $(($(kubectl get pods -n $namespace | grep "build" | grep -i running | wc -l)))"
+    echo "$(date) pods running: $(($(kubectl get pods -n $namespace | grep "build" | grep -w 'Running\|Init:1\|Init:2\|PodInitializing' | wc -l)))"
     echo "$(date) total jobs: $(($(kubectl get jobs -n $namespace | grep "build" | wc -l)))"
     sleep 5;
 done

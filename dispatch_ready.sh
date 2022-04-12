@@ -44,7 +44,7 @@ mkdir -p lists
 
 export UNIQUE=$(date '+%s');
 
-while (( $(kubectl get pods -n $namespace -o custom-columns=':metadata.name,:status.phase' | grep "Pending" | wc -l) > 50 )); do
+while (( $(kubectl get pods -n $namespace -o custom-columns=':metadata.name,:status.conditions[0].reason' | grep "Unschedulable" | wc -l) > 50 )); do
     sleep 10;
 done
 
