@@ -3,29 +3,29 @@ kind: Job
 metadata:
   annotations:
     kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"batch/v1","kind":"Job","metadata":{"annotations":{},"name":"ggm-build","namespace":"js-build"},"spec":{"backoffLimit":4,"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"kubernetes.io/hostname","operator":"In","values":["am-test-cm-5203b9","am-test-cm-5e7462","am-test-cm-6a618a","am-test-cm-a6a276","am-test-cm-d9658b"]}]}]}}},"containers":[{"args":["cp /mnt/libs/R/.rclone.conf ~/.rclone.conf \u0026\u0026 cd /home/rstudio \u0026\u0026 ls | grep \"ggm\" | xargs -i rclone copyto ./{} osn:bir190004-bucket01/packages/RELEASE_3_14/container/{} -v"],"command":["/bin/sh","-c"],"image":"rclone/rclone:latest","name":"rclone-copy","resources":{"requests":{"cpu":"100m","memory":"100Mi"}},"volumeMounts":[{"mountPath":"/mnt/libs/R","name":"libraries"},{"mountPath":"/tmp/local/lib/R/site-library","name":"tmplibrary"},{"mountPath":"/home/rstudio","name":"tmphome"}]},{"args":["cp /mnt/libs/R/.rclone.conf ~/.rclone.conf \u0026\u0026 cd /home/rstudio \u0026\u0026 ls | grep \"ggm\" | xargs -i rclone copyto ./{} taccjs:js-builder/packages/RELEASE_3_14/container/{} -v"],"command":["/bin/sh","-c"],"image":"rclone/rclone:latest","name":"iu-swift-copy","resources":{"requests":{"cpu":"100m","memory":"100Mi"}},"volumeMounts":[{"mountPath":"/mnt/libs/R","name":"libraries"},{"mountPath":"/tmp/local/lib/R/site-library","name":"tmplibrary"},{"mountPath":"/home/rstudio","name":"tmphome"}]}],"initContainers":[{"args":["su rstudio \u0026\u0026 cd /home/rstudio \u0026\u0026 Rscript -e 'p \u003c- .libPaths(); p \u003c- c(\"/tmp/local/lib/R/site-library\", p); .libPaths(p); if(BiocManager::install(\"ggm\", INSTALL_opts = \"--build\", update = FALSE, quiet = TRUE, force = TRUE, keep_outputs = TRUE) %in% rownames(installed.packages())) q(status = 0) else q(status = 1)'"],"command":["/bin/bash","-c"],"env":[{"name":"R_LIBS_USER","value":"/mnt/libs/R"}],"image":"bioconductor/bioconductor_docker:RELEASE_3_14","name":"build","resources":{"requests":{"cpu":"1000m","memory":"1.5Gi"}},"volumeMounts":[{"mountPath":"/mnt/libs/R","name":"libraries"},{"mountPath":"/tmp/local/lib/R/site-library","name":"tmplibrary"},{"mountPath":"/home/rstudio","name":"tmphome"}]},{"args":["cp -r /tmp/local/lib/R/site-library/ggm /mnt/libs/R/ggm \u0026\u0026 cd /home/rstudio \u0026\u0026 ls | grep \"ggm\" | xargs -i cp ./{} /mnt/libs/R/{}"],"command":["/bin/bash","-c"],"image":"bioconductor/bioconductor_docker:RELEASE_3_14","name":"nfs-copy","resources":{"requests":{"cpu":"100m","memory":"100Mi"}},"volumeMounts":[{"mountPath":"/mnt/libs/R","name":"libraries"},{"mountPath":"/tmp/local/lib/R/site-library","name":"tmplibrary"},{"mountPath":"/home/rstudio","name":"tmphome"}]}],"restartPolicy":"OnFailure","securityContext":{"fsGroup":1000,"runAsUser":0},"volumes":[{"name":"libraries","persistentVolumeClaim":{"claimName":"manual-js-build"}},{"emptyDir":{},"name":"tmplibrary"},{"emptyDir":{},"name":"tmphome"}]}}}}
-  creationTimestamp: "2022-04-12T11:00:17Z"
+      {"apiVersion":"batch/v1","kind":"Job","metadata":{"annotations":{},"name":"kknn-build","namespace":"js-build"},"spec":{"backoffLimit":4,"template":{"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"kubernetes.io/hostname","operator":"In","values":["am-test-cm-5203b9","am-test-cm-5e7462","am-test-cm-6a618a","am-test-cm-a6a276","am-test-cm-d9658b"]}]}]}}},"containers":[{"args":["cp /mnt/libs/R/.rclone.conf ~/.rclone.conf \u0026\u0026 cd /home/rstudio \u0026\u0026 ls | grep \"kknn\" | xargs -i rclone copyto ./{} osn:bir190004-bucket01/packages/RELEASE_3_14/container/{} -v"],"command":["/bin/sh","-c"],"image":"rclone/rclone:latest","name":"rclone-copy","resources":{"requests":{"cpu":"100m","memory":"100Mi"}},"volumeMounts":[{"mountPath":"/mnt/libs/R","name":"libraries"},{"mountPath":"/tmp/local/lib/R/site-library","name":"tmplibrary"},{"mountPath":"/home/rstudio","name":"tmphome"}]},{"args":["cp /mnt/libs/R/.rclone.conf ~/.rclone.conf \u0026\u0026 cd /home/rstudio \u0026\u0026 ls | grep \"kknn\" | xargs -i rclone copyto ./{} taccjs:js-builder/packages/RELEASE_3_14/container/{} -v"],"command":["/bin/sh","-c"],"image":"rclone/rclone:latest","name":"iu-swift-copy","resources":{"requests":{"cpu":"100m","memory":"100Mi"}},"volumeMounts":[{"mountPath":"/mnt/libs/R","name":"libraries"},{"mountPath":"/tmp/local/lib/R/site-library","name":"tmplibrary"},{"mountPath":"/home/rstudio","name":"tmphome"}]}],"initContainers":[{"args":["su rstudio \u0026\u0026 cd /home/rstudio \u0026\u0026 Rscript -e 'p \u003c- .libPaths(); p \u003c- c(\"/tmp/local/lib/R/site-library\", p); .libPaths(p); if(BiocManager::install(\"kknn\", INSTALL_opts = \"--build\", update = FALSE, quiet = TRUE, force = TRUE, keep_outputs = TRUE) %in% rownames(installed.packages())) q(status = 0) else q(status = 1)'"],"command":["/bin/bash","-c"],"env":[{"name":"R_LIBS_USER","value":"/mnt/libs/R"}],"image":"bioconductor/bioconductor_docker:RELEASE_3_14","name":"build","resources":{"requests":{"cpu":"1000m","memory":"1.5Gi"}},"volumeMounts":[{"mountPath":"/mnt/libs/R","name":"libraries"},{"mountPath":"/tmp/local/lib/R/site-library","name":"tmplibrary"},{"mountPath":"/home/rstudio","name":"tmphome"}]},{"args":["cp -r /tmp/local/lib/R/site-library/kknn /mnt/libs/R/kknn \u0026\u0026 cd /home/rstudio \u0026\u0026 ls | grep \"kknn\" | xargs -i cp ./{} /mnt/libs/R/{}"],"command":["/bin/bash","-c"],"image":"bioconductor/bioconductor_docker:RELEASE_3_14","name":"nfs-copy","resources":{"requests":{"cpu":"100m","memory":"100Mi"}},"volumeMounts":[{"mountPath":"/mnt/libs/R","name":"libraries"},{"mountPath":"/tmp/local/lib/R/site-library","name":"tmplibrary"},{"mountPath":"/home/rstudio","name":"tmphome"}]}],"restartPolicy":"OnFailure","securityContext":{"fsGroup":1000,"runAsUser":0},"volumes":[{"name":"libraries","persistentVolumeClaim":{"claimName":"manual-js-build"}},{"emptyDir":{},"name":"tmplibrary"},{"emptyDir":{},"name":"tmphome"}]}}}}
+  creationTimestamp: "2022-04-12T11:00:15Z"
   labels:
-    controller-uid: 842fc625-0f1a-4933-b1c9-02e2df97a801
-    job-name: ggm-build
-  name: ggm-build
+    controller-uid: 8b61a03c-91a0-4c83-ad1d-09f3caf98097
+    job-name: kknn-build
+  name: kknn-build
   namespace: js-build
-  resourceVersion: "2253819"
-  selfLink: /apis/batch/v1/namespaces/js-build/jobs/ggm-build
-  uid: 842fc625-0f1a-4933-b1c9-02e2df97a801
+  resourceVersion: "2253500"
+  selfLink: /apis/batch/v1/namespaces/js-build/jobs/kknn-build
+  uid: 8b61a03c-91a0-4c83-ad1d-09f3caf98097
 spec:
   backoffLimit: 4
   completions: 1
   parallelism: 1
   selector:
     matchLabels:
-      controller-uid: 842fc625-0f1a-4933-b1c9-02e2df97a801
+      controller-uid: 8b61a03c-91a0-4c83-ad1d-09f3caf98097
   template:
     metadata:
       creationTimestamp: null
       labels:
-        controller-uid: 842fc625-0f1a-4933-b1c9-02e2df97a801
-        job-name: ggm-build
+        controller-uid: 8b61a03c-91a0-4c83-ad1d-09f3caf98097
+        job-name: kknn-build
     spec:
       affinity:
         nodeAffinity:
@@ -43,7 +43,7 @@ spec:
       containers:
       - args:
         - cp /mnt/libs/R/.rclone.conf ~/.rclone.conf && cd /home/rstudio && ls | grep
-          "ggm" | xargs -i rclone copyto ./{} osn:bir190004-bucket01/packages/RELEASE_3_14/container/{}
+          "kknn" | xargs -i rclone copyto ./{} osn:bir190004-bucket01/packages/RELEASE_3_14/container/{}
           -v
         command:
         - /bin/sh
@@ -66,7 +66,7 @@ spec:
           name: tmphome
       - args:
         - cp /mnt/libs/R/.rclone.conf ~/.rclone.conf && cd /home/rstudio && ls | grep
-          "ggm" | xargs -i rclone copyto ./{} taccjs:js-builder/packages/RELEASE_3_14/container/{}
+          "kknn" | xargs -i rclone copyto ./{} taccjs:js-builder/packages/RELEASE_3_14/container/{}
           -v
         command:
         - /bin/sh
@@ -91,7 +91,7 @@ spec:
       initContainers:
       - args:
         - su rstudio && cd /home/rstudio && Rscript -e 'p <- .libPaths(); p <- c("/tmp/local/lib/R/site-library",
-          p); .libPaths(p); if(BiocManager::install("ggm", INSTALL_opts = "--build",
+          p); .libPaths(p); if(BiocManager::install("kknn", INSTALL_opts = "--build",
           update = FALSE, quiet = TRUE, force = TRUE, keep_outputs = TRUE) %in% rownames(installed.packages()))
           q(status = 0) else q(status = 1)'
         command:
@@ -117,8 +117,8 @@ spec:
         - mountPath: /home/rstudio
           name: tmphome
       - args:
-        - cp -r /tmp/local/lib/R/site-library/ggm /mnt/libs/R/ggm && cd /home/rstudio
-          && ls | grep "ggm" | xargs -i cp ./{} /mnt/libs/R/{}
+        - cp -r /tmp/local/lib/R/site-library/kknn /mnt/libs/R/kknn && cd /home/rstudio
+          && ls | grep "kknn" | xargs -i cp ./{} /mnt/libs/R/{}
         command:
         - /bin/bash
         - -c
@@ -153,11 +153,11 @@ spec:
       - emptyDir: {}
         name: tmphome
 status:
-  completionTime: "2022-04-12T11:05:32Z"
+  completionTime: "2022-04-12T11:05:10Z"
   conditions:
-  - lastProbeTime: "2022-04-12T11:05:32Z"
-    lastTransitionTime: "2022-04-12T11:05:32Z"
+  - lastProbeTime: "2022-04-12T11:05:10Z"
+    lastTransitionTime: "2022-04-12T11:05:10Z"
     status: "True"
     type: Complete
-  startTime: "2022-04-12T11:00:17Z"
+  startTime: "2022-04-12T11:00:15Z"
   succeeded: 1
