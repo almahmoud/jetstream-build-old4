@@ -44,6 +44,9 @@ mkdir -p lists
 
 export UNIQUE=$(date '+%s');
 
+while (( $(kubectl get pods -n $namespace -o custom-columns=':metadata.name,:status.phase' | grep "Pending" | wc -l) > 50 )); do
+    sleep 10;
+done
 
 echo "successful deletions:"
 kubectl get jobs -n $namespace -o custom-columns=':metadata.name,:status.conditions[0].type' | grep -w Complete | awk '{print $1}' > lists/tmpbuildlist$UNIQUE &&\
@@ -99,9 +102,6 @@ if [ ! -s lists/dispatch$UNIQUE ]
 then
     rm lists/dispatch$UNIQUE;
 else
-    while (( $(kubectl get jobs -n $namespace -o custom-columns=':metadata.name,:status.conditions[0].type' | grep "<none>" | wc -l) > 50 )); do
-        sleep 10;
-    done
     cat packages.json | sort | uniq -c > weights &&\
     cat lists/dispatch$UNIQUE | xargs -i sh -c "grep -wc '        \"{}\"' weights | awk '{print \$1\" {}\"}'" | sort -nr > lists/newdispatch$UNIQUE &&\
     head -n 100 lists/newdispatch$UNIQUE | awk '{print $2}' > lists/dispatch$UNIQUE &&\
