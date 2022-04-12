@@ -113,4 +113,5 @@ else
     rm lists/dispatch$UNIQUE && rm lists/manifest$UNIQUE
 fi
 
+wait;
 

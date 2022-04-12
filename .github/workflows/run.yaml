@@ -4,8 +4,8 @@ on:
 jobs:
   jsbuild:
     env:
-      NAMESPACE: newbuild
-      PVC: rstudio-r-libraries-pvc
+      NAMESPACE: js-build
+      PVC: manual-js-build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
